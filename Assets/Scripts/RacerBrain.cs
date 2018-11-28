@@ -5,13 +5,15 @@ using UnityEngine;
 
 
 
-
-
-
+/**
+ * 
+ * Implementation for Fuzzy Logic-Based Movement 
+ * 
+ **/
 public class RacerBrain : MonoBehaviour
 {
 
-    public double m_speedModifier = 5.0D;
+    public double m_speedModifier = 10.0D;
     private double m_currentSpeed = 0.0D;
 
     // Distance
@@ -73,7 +75,7 @@ public class RacerBrain : MonoBehaviour
         fv_dist.Fuzzify(hPos);
         fv_hspeed.Fuzzify(m_currentSpeed);
 
-        if(hPos > 0.5 || hPos < -0.5)
+        if (hPos > 0.5 || hPos < -0.5)
             Debug.Log(string.Format("dist: {0}   hPos: {1}", dist, hPos));
 
 
@@ -92,7 +94,7 @@ public class RacerBrain : MonoBehaviour
 
         double degreeFastLeft = FuzzyEngine.AND(fv_dist.get("right"), fv_hspeed.get("rightwards"));
         double degreeLeft = FuzzyEngine.OR(
-                                        FuzzyEngine.AND(fv_dist.get("right"), fv_hspeed.get("still")), 
+                                        FuzzyEngine.AND(fv_dist.get("right"), fv_hspeed.get("still")),
                                         FuzzyEngine.AND(fv_dist.get("middle"), fv_hspeed.get("rightwards"))
                                         );
         double degreeStay = FuzzyEngine.OR(
@@ -128,6 +130,6 @@ public class RacerBrain : MonoBehaviour
         pos.x += Time.deltaTime * (float)(m_speedModifier * (m_currentSpeed));
 
         transform.position = pos;
-
+        transform.rotation = Quaternion.Euler(new Vector3(0.0f, 0.0f, -2.0f * (float)m_currentSpeed));
     }
 }
