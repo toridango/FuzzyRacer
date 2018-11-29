@@ -10,7 +10,7 @@ using UnityEngine;
  * Implementation for Fuzzy Logic-Based Movement 
  * 
  **/
-public class RacerBrain : MonoBehaviour
+public class FuzzyRacerBrain : MonoBehaviour
 {
 
     public double m_speedModifier = 10.0D;

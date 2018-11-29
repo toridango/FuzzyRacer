@@ -29,13 +29,10 @@ public class PotentialRacerBrain : MonoBehaviour
     public float m;
 
     private GameObject m_raceline;
-    private float yspeed;
 
     // Use this for initialization
     void Start()
     {
-        // Fake forward speed
-        yspeed = 200.0f;
         m_raceline = GameObject.Find("RaceLine");
 
     }
