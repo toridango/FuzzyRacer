@@ -112,6 +112,22 @@ public class FuzzyEngine
         return 1.0 - A;
     }
 
+    public static double VERY(double A)
+    {
+        return Math.Pow(A,2);
+    }
+
+    public static double NOT_VERY(double A)
+    {
+        //return NOT(VERY(A));
+        return Math.Pow(A, 0.5f);
+    }
+
+    /*public static double VERY_NOT(double A)
+    {
+        return VERY(NOT(A));
+    }*/
+
     public static Point CentroidOfCluster(List<Point> cluster)
     {
         if (!cluster.Any()) throw new ArgumentException("Can't calculate centroid of empty cluster");
