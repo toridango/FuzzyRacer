@@ -89,6 +89,7 @@ public class FuzzyRacerBrain : MonoBehaviour
 
         fv_dist.Fuzzify(hPos);
         fv_hspeed.Fuzzify(m_currentSpeed);
+        Debug.Log(string.Format("dist: {0}   speed: {1}", hPos, m_currentSpeed));
 
         if (hPos > 0.5 || hPos < -0.5)
             Debug.Log(string.Format("dist: {0}   hPos: {1}", dist, hPos));
@@ -148,7 +149,7 @@ public class FuzzyRacerBrain : MonoBehaviour
             m_feedback[i].text = m_fdbText[i] + m_outText[i];
         }
 
-        Debug.Log(string.Format("degreeFastLeft: {0}   degreeLeft: {1}   degreeStay: {2}   degreeRight: {3}   degreeFastRight: {4}", degreeFastLeft, degreeLeft, degreeStay, degreeRight, degreeFastRight));
+        //Debug.Log(string.Format("degreeFastLeft: {0}   degreeLeft: {1}   degreeStay: {2}   degreeRight: {3}   degreeFastRight: {4}", degreeFastLeft, degreeLeft, degreeStay, degreeRight, degreeFastRight));
         //Debug.Log(string.Format("degreeLeft: {0}   degreeStay: {1}   degreeRight: {2}", degreeLeft, degreeStay, degreeRight));
 
         List<Point> centroids = new List<Point>();

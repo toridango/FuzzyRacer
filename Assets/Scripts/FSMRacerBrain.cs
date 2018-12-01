@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class FSMRacerBrain : MonoBehaviour
@@ -28,6 +29,8 @@ public class FSMRacerBrain : MonoBehaviour
 
         fsm.updateState(distance, hspeed);
         hspeed = fsm.currentOutput(distance, hspeed);
+
+        Debug.Log(String.Format("speed: {0,8}", hspeed));
 
         pos.x += Time.deltaTime * hspeed;
         transform.position = pos;
