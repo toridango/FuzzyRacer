@@ -54,9 +54,6 @@ public class FuzzyRacerBrain : MonoBehaviour
         fv_dist.AddMembershipFunction(new DecreasingGradeMF("left", -0.3D, -0.005D, -0.5D));
         fv_dist.AddMembershipFunction(new TrapezoidMF("middle", -0.15D, -0.005D, 0.005D, 0.15D));
         fv_dist.AddMembershipFunction(new IncreasingGradeMF("right", 0.005D, 0.3D, 0.5D));
-        /*fv_dist.AddMembershipFunction(new DecreasingGradeMF("left", -6.0D, -1.0D, -9.2D));
-        fv_dist.AddMembershipFunction(new TrapezoidMF("middle", -3.0D, -1.0D, 1.0D, 3.0D));
-        fv_dist.AddMembershipFunction(new IncreasingGradeMF("right", 1.0D, 6.0D, 9.2D));*/
 
 
         // Horizontal Speed
@@ -97,33 +94,18 @@ public class FuzzyRacerBrain : MonoBehaviour
 
         //Debug.Log(string.Format("dist left: {0}   dist middle: {1}   dist right: {2}", fv_dist.get("left"), fv_dist.get("middle"), fv_dist.get("right")));
         //Debug.Log(string.Format("s left: {0}   s still: {1}   s right: {2}", fv_hspeed.get("leftwards"), fv_hspeed.get("still"), fv_hspeed.get("rightwards")));
-
-
-        /*
-        double goright = FuzzyEngine.AND(fv_dist.get("left"), FuzzyEngine.NOT(fv_dist.get("middle"))) - 0.5;
-        double goleft = FuzzyEngine.AND(fv_dist.get("right"), FuzzyEngine.NOT(fv_dist.get("middle"))) - 0.5;
-        double speed = m_speedModifier * (goright - goleft);
-        Debug.Log(string.Format("right: {0}   left: {1}   speed: {2}", goright, goleft, speed));
-        pos.x += Time.deltaTime * (float)speed;
-        transform.position = pos;
-        */
+        
 
         double degreeFastLeft = FuzzyEngine.AND(
                                         fv_dist.get("right"),
-                                        /*FuzzyEngine.NOT(fv_dist.get("middle")),
-                                        FuzzyEngine.NOT(fv_hspeed.get("leftwards"))
-                                        );*/ fv_hspeed.get("rightwards"));
+                                        fv_hspeed.get("rightwards"));
         double degreeLeft = FuzzyEngine.OR(
                                         FuzzyEngine.AND(fv_dist.get("right"), fv_hspeed.get("still")),
                                         FuzzyEngine.AND(fv_dist.get("middle"), fv_hspeed.get("rightwards"))
                                         );
         double degreeStay = FuzzyEngine.OR(
                                         FuzzyEngine.AND(fv_dist.get("right"), fv_hspeed.get("leftwards")),
-                                        FuzzyEngine.AND(fv_dist.get("middle"), fv_hspeed.get("still")),/*FuzzyEngine.OR(
-                                                    FuzzyEngine.AND(fv_dist.get("middle"), fv_hspeed.get("still")),
-                                                    FuzzyEngine.AND(fv_dist.get("middle"), FuzzyEngine.NOT_VERY(fv_hspeed.get("leftwards"))),
-                                                    FuzzyEngine.AND(fv_dist.get("middle"), FuzzyEngine.NOT_VERY(fv_hspeed.get("rightwards")))
-                                                    ),*/
+                                        FuzzyEngine.AND(fv_dist.get("middle"), fv_hspeed.get("still")),
                                         FuzzyEngine.AND(fv_dist.get("left"), fv_hspeed.get("rightwards"))
                                         );
         double degreeRight = FuzzyEngine.OR(
@@ -132,9 +114,7 @@ public class FuzzyRacerBrain : MonoBehaviour
                                         );
         double degreeFastRight = FuzzyEngine.AND(
                                         fv_dist.get("left"),
-                                        /*FuzzyEngine.NOT(fv_dist.get("middle")),
-                                        FuzzyEngine.NOT(fv_hspeed.get("rightwards"))
-                                        );*/ fv_hspeed.get("leftwards"));
+                                        fv_hspeed.get("leftwards"));
 
 
 
@@ -163,9 +143,7 @@ public class FuzzyRacerBrain : MonoBehaviour
 
 
         Debug.Log(string.Format("Current Speed: {0}   Speed Increment: {1}", m_currentSpeed, speedIncrement));
-        //Debug.Log(string.Format("Speed: {0}", speedIncrement));
-
-        //m_currentSpeed += m_speedModifier * speedIncrement;
+        
         m_currentSpeed += speedIncrement;
 
         // change stay to be 1 only at middle or check against left and right too
@@ -175,6 +153,6 @@ public class FuzzyRacerBrain : MonoBehaviour
         pos.x += Time.deltaTime * (float)(m_speedModifier * (m_currentSpeed));
 
         transform.position = pos;
-        //transform.rotation = Quaternion.Euler(new Vector3(0.0f, 0.0f, -2.0f * (float)m_currentSpeed));
+        transform.rotation = Quaternion.Euler(new Vector3(0.0f, 0.0f, -10.0f * (float)m_currentSpeed));
     }
 }

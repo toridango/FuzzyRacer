@@ -76,7 +76,7 @@ public class FSM
                 speed = -(5.0f + hspeed / 10.0f) * distance;
                 break;
             case STATE.MoveLeft:
-                speed = -(5.0f + hspeed / 10.0f) * distance;
+                speed = (-5.0f + hspeed / 10.0f) * distance;
                 break;
             case STATE.FlipSpeed:
                 speed = -hspeed;

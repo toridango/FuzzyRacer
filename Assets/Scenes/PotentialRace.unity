@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92c26380333e6c04ab969aa3d653755c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollSpeed: 50
+  scrollSpeed: 100
 --- !u!23 &719871013
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -495,6 +495,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   A: 0
-  B: 100
+  B: 200
   n: 0
   m: -2

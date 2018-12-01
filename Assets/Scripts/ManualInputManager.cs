@@ -133,7 +133,7 @@ public class ManualInputManager : MonoBehaviour
         double force = 0.0;
         if (distance > 1E-8)
         {
-            force = (distance / Mathf.Abs((float)distance)) * ((-2 * 100) / Mathf.Pow((float)distance, -2 + 1));
+            force = (distance / Mathf.Abs((float)distance)) * ((-2 * 200) / Mathf.Pow((float)distance, -2 + 1));
         }
         // Mass is considered 1 if force is not divided by anything
         return force;

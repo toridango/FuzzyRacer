@@ -29,12 +29,13 @@ public class PotentialRacerBrain : MonoBehaviour
     public float m;
 
     private GameObject m_raceline;
+    private float hspeed;
 
     // Use this for initialization
     void Start()
     {
         m_raceline = GameObject.Find("RaceLine");
-
+        hspeed = 0.0f;
     }
 
     // Update is called once per frame
@@ -53,8 +54,8 @@ public class PotentialRacerBrain : MonoBehaviour
             Vector3 force = u * ((n * -A) / Mathf.Pow(dist, n + 1) + (m * B) / Mathf.Pow(dist, m + 1));
 
             // Mass is considered 1 if force is not divided by anything
-            float xspeed = Time.deltaTime * force.x;
-            pos.x += Time.deltaTime * xspeed + 0.5f * force.x * Mathf.Pow(Time.deltaTime, 2);
+            float xspeed = hspeed + Time.deltaTime * force.x;
+            pos.x += Time.deltaTime * (xspeed - hspeed) + 0.5f * force.x * Mathf.Pow(Time.deltaTime, 2);
 
             Debug.Log(String.Format("fx: {0,8}  speed: {1,8}  pos.x: {2,8}", force.x, xspeed, pos.x));
 
@@ -69,8 +70,10 @@ public class PotentialRacerBrain : MonoBehaviour
             //transform.rotation = Quaternion.Euler(-180.0f, -2.0f * xspeed, 0.0f);
 
             // This for both (hardcoded multiplication/division used to exaggerate/attenuate)
-            transform.rotation = Quaternion.Euler(-180.0f, -2.0f * xspeed, xspeed / 2.0f);
+            transform.rotation = Quaternion.Euler(-180.0f, (xspeed - hspeed) / -2.0f, (xspeed - hspeed) / 2.0f);
 
+
+            hspeed = xspeed;
         }
 
     }
