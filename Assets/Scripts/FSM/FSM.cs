@@ -86,6 +86,7 @@ public class FSM
         }
         //Debug.Log(string.Format("speed: {0, 5} after distance: {1, 5} and hspeed: {2,5}", speed, distance, hspeed));
 
+       
         return speed;
     }
 

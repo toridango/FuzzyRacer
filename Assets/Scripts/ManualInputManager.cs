@@ -87,9 +87,7 @@ public class ManualInputManager : MonoBehaviour
 
 
 
-        double degreeFastLeft = FuzzyEngine.AND(
-                                        fv_dist.get("right"),
-                                        fv_hspeed.get("rightwards"));
+        double degreeFastLeft = FuzzyEngine.AND(fv_dist.get("right"), fv_hspeed.get("rightwards"));
         double degreeLeft = FuzzyEngine.OR(
                                         FuzzyEngine.AND(fv_dist.get("right"), fv_hspeed.get("still")),
                                         FuzzyEngine.AND(fv_dist.get("middle"), fv_hspeed.get("rightwards"))
@@ -103,9 +101,7 @@ public class ManualInputManager : MonoBehaviour
                                         FuzzyEngine.AND(fv_dist.get("left"), fv_hspeed.get("still")),
                                         FuzzyEngine.AND(fv_dist.get("middle"), fv_hspeed.get("leftwards"))
                                         );
-        double degreeFastRight = FuzzyEngine.AND(
-                                        fv_dist.get("left"),
-                                        fv_hspeed.get("leftwards"));
+        double degreeFastRight = FuzzyEngine.AND(fv_dist.get("left"), fv_hspeed.get("leftwards"));
 
 
         List<Point> centroids = new List<Point>();

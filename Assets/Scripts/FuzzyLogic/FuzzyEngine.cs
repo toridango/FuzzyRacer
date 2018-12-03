@@ -54,10 +54,6 @@ public class Polygon
 
         for (int i = 0, j = m_vertices.Count() - 1; i < m_vertices.Count(); j = i++)
         {
-            /*if (m_vertices[i].x > 1.0 || m_vertices[i].y > 1.0 || -m_vertices[i].x > 1.0 || -m_vertices[i].y > 1.0)
-            {
-                int k = 0;
-            }*/
 
             double temp = m_vertices[i].x * m_vertices[j].y - m_vertices[j].x * m_vertices[i].y;
             accumulatedArea += temp;
@@ -71,11 +67,7 @@ public class Polygon
         accumulatedArea *= 0.5D;
         centreX *= 1.0D / (6.0D * accumulatedArea);
         centreY *= 1.0D / (6.0D * accumulatedArea);
-
-        /*if (centreX > 1.0 || centreY > 1.0 || -centreX > 1.0 || -centreY > 1.0)
-        {
-            int k = 0;
-        }*/
+        
 
 
         return new Point(centreX, centreY);
@@ -119,14 +111,9 @@ public class FuzzyEngine
 
     public static double NOT_VERY(double A)
     {
-        //return NOT(VERY(A));
         return Math.Pow(A, 0.5f);
     }
-
-    /*public static double VERY_NOT(double A)
-    {
-        return VERY(NOT(A));
-    }*/
+    
 
     public static Point CentroidOfCluster(List<Point> cluster)
     {

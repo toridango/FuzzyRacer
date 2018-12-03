@@ -45,6 +45,8 @@ public class FuzzyVariable
     // Returns the membership to the requested function of this variable
     public double get(string mf_name)
     {
+        if (!fuzzified) { throw new System.ArgumentException("Variable hasn't been fuzzified", "fuzzified"); }
+
         int i = 0;
         double value = 0;
         bool found = false;
@@ -61,7 +63,6 @@ public class FuzzyVariable
         }
 
         if (!found) { throw new System.ArgumentException(String.Format("Error: Membership Function '{0}' not found", mf_name), "mf_name"); }
-        if (!fuzzified) { throw new System.ArgumentException("Variable hasn't been fuzzified", "fuzzified"); }
 
         return value;
     }

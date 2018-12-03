@@ -94,11 +94,9 @@ public class FuzzyRacerBrain : MonoBehaviour
 
         //Debug.Log(string.Format("dist left: {0}   dist middle: {1}   dist right: {2}", fv_dist.get("left"), fv_dist.get("middle"), fv_dist.get("right")));
         //Debug.Log(string.Format("s left: {0}   s still: {1}   s right: {2}", fv_hspeed.get("leftwards"), fv_hspeed.get("still"), fv_hspeed.get("rightwards")));
-        
 
-        double degreeFastLeft = FuzzyEngine.AND(
-                                        fv_dist.get("right"),
-                                        fv_hspeed.get("rightwards"));
+
+        double degreeFastLeft = FuzzyEngine.AND(fv_dist.get("right"), fv_hspeed.get("rightwards"));
         double degreeLeft = FuzzyEngine.OR(
                                         FuzzyEngine.AND(fv_dist.get("right"), fv_hspeed.get("still")),
                                         FuzzyEngine.AND(fv_dist.get("middle"), fv_hspeed.get("rightwards"))
@@ -109,12 +107,10 @@ public class FuzzyRacerBrain : MonoBehaviour
                                         FuzzyEngine.AND(fv_dist.get("left"), fv_hspeed.get("rightwards"))
                                         );
         double degreeRight = FuzzyEngine.OR(
-                                        FuzzyEngine.AND(fv_dist.get("left"),fv_hspeed.get("still")),
+                                        FuzzyEngine.AND(fv_dist.get("left"), fv_hspeed.get("still")),
                                         FuzzyEngine.AND(fv_dist.get("middle"), fv_hspeed.get("leftwards"))
                                         );
-        double degreeFastRight = FuzzyEngine.AND(
-                                        fv_dist.get("left"),
-                                        fv_hspeed.get("leftwards"));
+        double degreeFastRight = FuzzyEngine.AND(fv_dist.get("left"), fv_hspeed.get("leftwards"));
 
 
 
@@ -143,7 +139,7 @@ public class FuzzyRacerBrain : MonoBehaviour
 
 
         Debug.Log(string.Format("Current Speed: {0}   Speed Increment: {1}", m_currentSpeed, speedIncrement));
-        
+
         m_currentSpeed += speedIncrement;
 
         // change stay to be 1 only at middle or check against left and right too
