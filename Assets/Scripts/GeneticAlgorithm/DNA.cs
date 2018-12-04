@@ -25,12 +25,16 @@ public class DNA<T>
         }
     }
 
+
+    // Used the passed fitness function
     public float CalculateFitness(int index)
     {
         m_fitness = fitnessFunction(index);
         return m_fitness;
     }
 
+
+    // Cross two parents
     public DNA<T> Crossover(DNA<T> otherParent)
     {
         DNA<T> child = new DNA<T>(m_genes.Length, random, getRandomGene, fitnessFunction, shouldInitGenes: false);
@@ -43,6 +47,7 @@ public class DNA<T>
         return child;
     }
 
+    // Randomly mutate genes of ann individual given a mutation rate
     public void Mutate(float mutationRate)
     {
         for (int i = 0; i < m_genes.Length; i++)

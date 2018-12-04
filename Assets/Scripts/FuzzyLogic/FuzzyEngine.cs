@@ -113,8 +113,9 @@ public class FuzzyEngine
     {
         return Math.Pow(A, 0.5f);
     }
-    
 
+
+    // Alternative name "Average of points" is more descriptive
     public static Point CentroidOfCluster(List<Point> cluster)
     {
         if (!cluster.Any()) throw new ArgumentException("Can't calculate centroid of empty cluster");

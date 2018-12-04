@@ -51,6 +51,8 @@ public class PotentialRacerBrain : MonoBehaviour
         float dist = r.magnitude;
         if (dist > 1E-8)
         {
+
+            // Key equation: Force calculation ----------------------------------
             Vector3 force = u * ((n * -A) / Mathf.Pow(dist, n + 1) + (m * B) / Mathf.Pow(dist, m + 1));
 
             // Mass is considered 1 if force is not divided by anything
@@ -61,7 +63,7 @@ public class PotentialRacerBrain : MonoBehaviour
 
             transform.position = pos;
 
-            // animate apparent steering
+            // Fancy steering animation
 
             // This for car-like (around z) steering
             // transform.rotation = Quaternion.Euler(-180.0f, 0.0f, xspeed);

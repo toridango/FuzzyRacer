@@ -27,7 +27,10 @@ public class FSMRacerBrain : MonoBehaviour
         Vector3 pos = transform.position;
         float distance = pos.x - m_raceline.transform.position.x;
 
+        // Update FSM
         fsm.updateState(distance, hspeed);
+
+        // Get action that corresponds to the current state
         hspeed = fsm.currentOutput(distance, hspeed);
 
         Debug.Log(String.Format("speed: {0,8}", hspeed));

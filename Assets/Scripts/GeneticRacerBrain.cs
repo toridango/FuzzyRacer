@@ -62,6 +62,7 @@ public class GeneticRacerBrain : MonoBehaviour
         m_linePos = m_raceline.transform.position;
         if (ga.m_bestFitness != 1)
         {
+            //  Converges when time limit is reached, all fail or maximum fitness is reached
             if (converged)
             {
                 ga.NewGeneration();
@@ -69,11 +70,13 @@ public class GeneticRacerBrain : MonoBehaviour
                 converged = false;
             }
 
+            // Move the individuals
             for (int i = 0; i < populationSize; ++i)
             {
                 moveAccordingToGenes(i);
             }
             
+            // Check conditions
             if(allDied())
             {
                 converged = true;
@@ -97,12 +100,11 @@ public class GeneticRacerBrain : MonoBehaviour
         {
             Debug.Log("Max fitness attained");
         }
-        /*if (ga.BestFitness == 1)
-        {
-            this.enabled = false;
-        }*/
+
     }
 
+
+    // Random Number Functions -----------------------------------------------------------------------
     private static double NextDouble(System.Random random)
     {
         double mantissa = (random.NextDouble() + 2.0) - 1.0;
@@ -125,6 +127,7 @@ public class GeneticRacerBrain : MonoBehaviour
         double exponent = Math.Pow(2.0, random.Next(-126, 128));
         return (float)(NextDouble(random) * (maximum - minimum) + minimum);
     }
+    // ------------------------------------------------------------------------------------------------
 
 
     private float GetRandomGene()
@@ -132,6 +135,7 @@ public class GeneticRacerBrain : MonoBehaviour
         return NextFloat(random, -4.0f, 4.0f);
     }
 
+    // FITNESS FUNCTION FOR THE GENETIC ALGORITHM
     private float FitnessFunction(int index)
     {
         float score = 0;
@@ -146,6 +150,7 @@ public class GeneticRacerBrain : MonoBehaviour
         return score;
     }
 
+    // Reset existing racers and add as many as needed to reach the population size
     private void resetRacers()
     {
         for (int i = 0; i < populationSize; ++i)
@@ -162,6 +167,7 @@ public class GeneticRacerBrain : MonoBehaviour
         }
     }
 
+    // Check if they all "died" (failed beyond bad fitness)
     private bool allDied()
     {
         bool alldied = true;
@@ -176,6 +182,7 @@ public class GeneticRacerBrain : MonoBehaviour
         return alldied;
     }
 
+    // Move all individiuals using the values in their genes ----------------------------------------
     private void moveAccordingToGenes(int i)
     {
 

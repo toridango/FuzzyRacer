@@ -66,8 +66,9 @@ public class FuzzyVariable
 
         return value;
     }
-    
 
+
+    // Returns a polygon object for a given degree of membership of this function
     public Polygon getMFPolygon(string mf_name, double mfDegree)
     {
         int i = 0;

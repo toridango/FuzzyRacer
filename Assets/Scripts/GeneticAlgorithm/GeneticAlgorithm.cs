@@ -65,7 +65,7 @@ public class GeneticAlgorithm<T>
                 DNA<T> parent1 = ChooseParent();
                 DNA<T> parent2 = ChooseParent();
 
-                // NotSetToReferenceOfObject when ChooseParent returns null
+                // Triggers NotSetToReferenceOfObject when ChooseParent returns null
                 DNA<T> child = parent1.Crossover(parent2);
 
                 child.Mutate(m_mutationRate);

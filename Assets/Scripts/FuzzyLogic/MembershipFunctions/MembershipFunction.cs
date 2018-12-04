@@ -16,8 +16,10 @@ public abstract class MembershipFunction
         this.name = name;
     }
 
+    // Find degree of membership to the function given a value in the x-axis
     public abstract double Fuzzify(double inputValue);
 
     // Used to deffuzify (input into getCentroid)
+    // Returns a list with vertices of the polygon cut at "mfDegree" height (clockwise order)
     public abstract List<Point> getVertices(double mfDegree);
 }

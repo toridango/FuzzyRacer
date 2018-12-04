@@ -33,6 +33,7 @@ public class IncreasingGradeMF : MembershipFunction
         this.x2 = x2;
     }
 
+    // Find degree of membership to the function given a value in the x-axis
     public override double Fuzzify(double inputValue)
     {
         double result = 0.0D;
@@ -47,6 +48,7 @@ public class IncreasingGradeMF : MembershipFunction
         return result;
     }
 
+    // Returns a list with vertices of the polygon cut at "mfDegree" height (clockwise order)
     public override List<Point> getVertices(double mfDegree)
     {
         List<Point> vertices = new List<Point>();

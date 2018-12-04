@@ -35,6 +35,7 @@ public class TrapezoidMF : MembershipFunction
         this.x3 = x3;
     }
 
+    // Find degree of membership to the function given a value in the x-axis
     public override double Fuzzify(double inputValue)
     {
         m_input = inputValue;
@@ -55,6 +56,7 @@ public class TrapezoidMF : MembershipFunction
         return m_fuzzyfiedInput;
     }
 
+    // Returns a list with vertices of the polygon cut at "mfDegree" height (clockwise order)
     public override List<Point> getVertices(double mfDegree)
     {
         List<Point> vertices = new List<Point>();
